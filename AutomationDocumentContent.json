@@ -1,6 +1,6 @@
 {
     "schemaVersion": "2.2",
-    "description": "Send commands to Amazon CloudWatch Agent, with ECCOM Mod",
+    "description": "Send commands to Amazon CloudWatch Agent",
     "parameters": {
         "action": {
             "description": "The action CloudWatch Agent should take.",
