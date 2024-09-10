@@ -1,0 +1,54 @@
+{
+    "agent": {
+        "metrics_collection_interval": 60,
+        "region": "${CWAgentRegion}",
+        "run_as_user": "${CWAgentRunAsUser}",
+        "logfile": "/opt/aws/amazon-cloudwatch-agent/logs/amazon-cloudwatch-agent.log"
+    },
+    "metrics": {
+        "namespace": "CWAgent",
+        "append_dimensions": {
+            "ImageId": "${!aws:ImageId}",
+            "InstanceId": "${!aws:InstanceId}",
+            "InstanceType": "${!aws:InstanceType}",
+            "AutoScalingGroupName": "${!aws:AutoScalingGroupName}"
+        },
+        "metrics_collected": {
+            "disk": {
+                "measurement": [
+                    "used_percent"
+                ],
+                "ignore_file_system_types": [
+                    "aufs",
+                    "autofs",
+                    "cgroupfs",
+                    "cifs",
+                    "coda",
+                    "configfs",
+                    "cramfs",
+                    "debugfs",
+                    "devpts",
+                    "devtmpfs",
+                    "iso9660",
+                    "overlay",
+                    "overlayfs",
+                    "proc",
+                    "ramfs",
+                    "smbfs",
+                    "squashfs",
+                    "sysfs",
+                    "tmpfs",
+                    "usbfs"
+                ],
+                "resources": [
+                    **PARTITIONMOUNTPOINTS**
+                ]
+            },
+            "mem": {
+                "measurement": [
+                    "mem_used_percent"
+                ]
+            }
+        }
+    }
+}

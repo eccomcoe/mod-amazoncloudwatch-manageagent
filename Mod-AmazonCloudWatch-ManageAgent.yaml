@@ -13,6 +13,8 @@ Resources:
     Properties:
       Name: !Ref DocumentName
       DocumentType: Command
+      UpdateMethod: NewVersion
+      TargetType: "/AWS::EC2::Instance"
       Content:
         schemaVersion: "2.2"
         description: "Send commands to Amazon CloudWatch Agent, with ECCOM Mod"
@@ -164,7 +166,7 @@ Resources:
                 - ""
                 - "        # 检查并修改配置"
                 - "        if grep -q 'PARTITIONMOUNTPOINTS' ${temp_config_file}; then"
-                - "            sed \"s|\\*\\*MOUNTLIST\\*\\*|${mountlist}|g\" \"${temp_config_file}\" > \"${temp_config_dir}/config.json\""
+                - "            sed \"s|\\*\\*PARTITIONMOUNTPOINTS\\*\\*|${mountlist}|g\" \"${temp_config_file}\" > \"${temp_config_dir}/config.json\""
                 - "        fi"
                 - "        cwaconfig=\"file:${temp_config_dir}/config.json\""
                 - "    else"
